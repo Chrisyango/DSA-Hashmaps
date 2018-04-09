@@ -80,7 +80,7 @@ class HashMap {
 HashMap.MAX_LOAD_RATIO = 0.9;
 HashMap.SIZE_RATIO = 3;
 
-/*========== Any Permutation a Palindrom =========*/
+/*========== Any Permutation a Palindrome =========*/
 function uniqueChars(string) {
   const chars = [];
   for (let i = 0; i < string.length; i++) {
@@ -110,7 +110,35 @@ function permutationPalindrome(string) {
     }
   }
 
+  console.log(palindrome);
+
   return count < 2;
+}
+
+/*========== Grouping Anagrams =========*/
+function groupAnagrams(array) {
+  const groupedAnagrams = new HashMap;
+  const uniqueKeys = [];
+  let result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const lettersSorted = array[i].split('').sort().join('');
+    if (!uniqueKeys.includes(lettersSorted)) {
+      uniqueKeys.push(lettersSorted);
+    }
+    groupedAnagrams.set(lettersSorted, []);
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    const lettersSorted = array[i].split('').sort().join('');
+    groupedAnagrams.get(lettersSorted).push(array[i]);
+  }
+
+  for (let i = 0; i < uniqueKeys.length; i++) {
+    result.push(groupedAnagrams.get(uniqueKeys[i]));
+  }
+
+  return result;
 }
 
 function main() {
@@ -131,8 +159,10 @@ function main() {
   // console.log(lor);
   // console.log(lor.get('Maiar'));
 
-  console.log(permutationPalindrome('raceeecar'));
+  // console.log(permutationPalindrome('acecarr'));
+  // console.log(permutationPalindrome('racecar'));
+
+  console.log(groupAnagrams(['east', 'cars', 'acre', 'arcs', 'teas', 'eats', 'race']));
 }
 
 main();
-
