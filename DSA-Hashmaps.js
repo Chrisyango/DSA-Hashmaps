@@ -96,8 +96,8 @@ function permutationPalindrome(string) {
   const palindrome = new HashMap;
   let count = 0;
 
-  for (let i = 0; i < string.length; i++) {
-    palindrome.set(string[i], 0);
+  for (let i = 0; i < chars.length; i++) {
+    palindrome.set(chars[i], 0);
   }
 
   for (let i = 0; i < string.length; i++) {
